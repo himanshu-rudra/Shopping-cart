@@ -5,28 +5,28 @@ let shop = document.getElementById('shop');
 // ! hardcoded means we are putting values for each of the values
 
 let shopItemsData = [{
-    id: "001",
+    id: "1",
     name: "casual shirt",
     price: 45,
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
     img: "images/img-1.jpg"
 },
 {
-    id: "002",
+    id: "2",
     name: "office shirt",
     price: 100,
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
     img: "images/img-2.jpg"
 },
 {
-    id: "003",
+    id: "3",
     name: "Tshirt",
     price: 25,
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
     img: "images/img-3.jpg"
 },
 {
-    id: "004",
+    id: "4",
     name: "Mens suit",
     price: 400,
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
@@ -45,9 +45,9 @@ let generateShop = () => {
             <div class="price-quantity">
                 <h2>$ ${price}</h2>
                 <div class="buttons">
-                    <i class="bi bi-dash-lg"></i>
+                    <i onclick="decrement(${id})" class="bi bi-dash-lg"></i>
                     <div id=${id} class="quantity">0</div>
-                    <i class="bi bi-plus-lg"></i>
+                    <i onclick="increment(${id})" class="bi bi-plus-lg"></i>
                 </div>
             </div>
         </div>
@@ -55,6 +55,47 @@ let generateShop = () => {
     }).join("")
  )
 }
-
-
 generateShop();
+
+let basket = [];
+
+// ! incrementing, decrementing, updating the cart 
+
+let increment = (idt) =>{
+    // console.log(idt);
+    let search = basket.find((x)=> x.id === idt);
+    
+    if(search === undefined){
+        basket.push({
+            id:idt,
+            item:1,
+        });
+    }
+    else{
+        search.item += 1
+    }
+
+    // console.log(basket);
+    update(idt);
+
+
+}
+
+let decrement = (idt) =>{
+    // console.log(idt);
+    let search = basket.find((x)=> x.id === idt);
+    if(search.item === 0) return; //! for stopping the function
+    else{
+        search.item -= 1
+    }
+    // console.log(basket);
+    update(idt);
+}
+
+let update = (idt) =>{
+    
+    let search = basket.find((x) => x.id === idt );
+
+    
+}
+
