@@ -19,7 +19,7 @@ body{
 .navbar {
     display: flex;
     flex-direction: row;
-    position: relative;
+    position: sticky;
     align-items: center;
     justify-content: space-between;
     width: 100%;

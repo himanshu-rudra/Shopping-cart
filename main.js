@@ -95,7 +95,27 @@ let decrement = (idt) =>{
 let update = (idt) =>{
     
     let search = basket.find((x) => x.id === idt );
+    let valInDe = document.getElementById(idt);
+    valInDe.innerHTML = search.item;
+    calculation();
+}
 
+
+let calculation = () =>{
+     
+    let cartIcon = document.getElementById('cartAmount');
     
+    // ! method one by me
+    // let sum = 0;
+    // basket.map((element) => {
+    //     sum = sum + element.item;
+    // });
+
+    // cartIcon.innerHTML = sum;
+
+    // ! method two by instructor
+
+    console.log(basket.map((element)=> element.item).reduce((x,y)=> x+y,0));
+
 }
 
