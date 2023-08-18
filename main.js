@@ -57,7 +57,7 @@ let generateShop = () => {
 }
 generateShop();
 
-let basket = [];
+let basket = JSON.parse(localStorage.getItem("data"))||[];
 
 // ! incrementing, decrementing, updating the cart 
 
@@ -75,10 +75,11 @@ let increment = (idt) =>{
         search.item += 1
     }
 
+    //! making the value of quantity stick even if page refresh using local storage
+    localStorage.setItem("data",JSON.stringify(basket));
+
     // console.log(basket);
     update(idt);
-
-
 }
 
 let decrement = (idt) =>{
@@ -88,6 +89,10 @@ let decrement = (idt) =>{
     else{
         search.item -= 1
     }
+
+    //! making the value of quantity stick even if page refresh using local storage
+    localStorage.setItem("data",JSON.stringify(basket));
+
     // console.log(basket);
     update(idt);
 }
@@ -114,8 +119,8 @@ let calculation = () =>{
     // cartIcon.innerHTML = sum;
 
     // ! method two by instructor
-
-    console.log(basket.map((element)=> element.item).reduce((x,y)=> x+y,0));
+    cartIcon.textContent  = basket.map((element)=> element.item).reduce((x,y)=> x+y,0)
+    
 
 }
 
