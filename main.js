@@ -33,10 +33,15 @@ let shopItemsData = [{
     img: "images/img-4.jpg"
 }
 ];
+
+let basket = JSON.parse(localStorage.getItem('data')) || [];
+
 let generateShop = () => {
 
     return (shop.innerHTML = shopItemsData.map((item) => {
-        let {id,name,price,desc,img} = item;
+        let { id, name, price, desc, img } = item;
+        let newId = Number(id);
+        let search = basket.find((x) => x.id === newId) || [];
         return (`<div class="item" id=product-id-${id}>
         <img src=${img} width="220" alt="">
         <div class="detail">
@@ -46,70 +51,71 @@ let generateShop = () => {
                 <h2>$ ${price}</h2>
                 <div class="buttons">
                     <i onclick="decrement(${id})" class="bi bi-dash-lg"></i>
-                    <div id=${id} class="quantity">0</div>
+                    <div id=${id} class="quantity">
+                    ${search.item === undefined ? 0 : search.item}
+                    </div>
                     <i onclick="increment(${id})" class="bi bi-plus-lg"></i>
                 </div>
             </div>
         </div>
     </div>`)
     }).join("")
- )
+    )
 }
 generateShop();
 
-let basket = JSON.parse(localStorage.getItem("data"))||[];
 
 // ! incrementing, decrementing, updating the cart 
 
-let increment = (idt) =>{
+let increment = (idt) => {
     // console.log(idt);
-    let search = basket.find((x)=> x.id === idt);
-    
-    if(search === undefined){
+    let search = basket.find((x) => x.id === idt);
+
+    if (search === undefined) {
         basket.push({
-            id:idt,
-            item:1,
+            id: idt,
+            item: 1,
         });
     }
-    else{
+    else {
         search.item += 1
     }
 
     //! making the value of quantity stick even if page refresh using local storage
-    localStorage.setItem("data",JSON.stringify(basket));
+    localStorage.setItem("data", JSON.stringify(basket));
 
     // console.log(basket);
     update(idt);
 }
 
-let decrement = (idt) =>{
+let decrement = (idt) => {
     // console.log(idt);
-    let search = basket.find((x)=> x.id === idt);
-    if(search.item === 0) return; //! for stopping the function
-    else{
+    let search = basket.find((x) => x.id === idt);
+    if (search.item === 0) return; //! for stopping the function
+    else {
         search.item -= 1
     }
 
     //! making the value of quantity stick even if page refresh using local storage
-    localStorage.setItem("data",JSON.stringify(basket));
+    localStorage.setItem("data", JSON.stringify(basket));
 
     // console.log(basket);
     update(idt);
 }
 
-let update = (idt) =>{
-    
-    let search = basket.find((x) => x.id === idt );
+let update = (idt) => {
+
+    let search = basket.find((x) => x.id === idt);
     let valInDe = document.getElementById(idt);
     valInDe.innerHTML = search.item;
     calculation();
 }
 
 
-let calculation = () =>{
-     
+let calculation = () => {
+
     let cartIcon = document.getElementById('cartAmount');
-    
+
     // ! method one by me
     // let sum = 0;
     // basket.map((element) => {
@@ -119,8 +125,8 @@ let calculation = () =>{
     // cartIcon.innerHTML = sum;
 
     // ! method two by instructor
-    cartIcon.textContent  = basket.map((element)=> element.item).reduce((x,y)=> x+y,0)
-    
+    cartIcon.textContent = basket.map((element) => element.item).reduce((x, y) => x + y, 0)
+
 
 }
 
