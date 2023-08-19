@@ -34,12 +34,17 @@ let shopItemsData = [{
 }
 ];
 
-let basket = JSON.parse(localStorage.getItem('data')) || [];
+
+//! this is used to store information which has been included in cart.
+//! this will check and get data in local storage 
+let basket = JSON.parse(localStorage.getItem('data')) || []; 
+ 
 
 let generateShop = () => {
 
     return (shop.innerHTML = shopItemsData.map((item) => {
         let { id, name, price, desc, img } = item;
+        //! we had id as string in shopItemsData and id as number in basket                         
         let newId = Number(id);
         let search = basket.find((x) => x.id === newId) || [];
         return (`<div class="item" id=product-id-${id}>
@@ -52,6 +57,7 @@ let generateShop = () => {
                 <div class="buttons">
                     <i onclick="decrement(${id})" class="bi bi-dash-lg"></i>
                     <div id=${id} class="quantity">
+                    //! conditional operator
                     ${search.item === undefined ? 0 : search.item}
                     </div>
                     <i onclick="increment(${id})" class="bi bi-plus-lg"></i>
@@ -90,7 +96,7 @@ let increment = (idt) => {
 let decrement = (idt) => {
     // console.log(idt);
     let search = basket.find((x) => x.id === idt);
-    if(search === undefined) return;
+    if(search === undefined) return; //! to avoid the error which is formed after decrement from 0 from starting 
     else if (search.item === 0) return; //! for stopping the function
     else {
         search.item -= 1
@@ -99,7 +105,7 @@ let decrement = (idt) => {
     //! making the value of quantity stick even if page refresh using local storage
     
     update(idt);
-    basket = basket.filter((x) => x.item !== 0 );
+    basket = basket.filter((x) => x.item !== 0 ); //! we cant placae this before update because it wont decrement than 1
     localStorage.setItem("data", JSON.stringify(basket));
 }
 
@@ -119,5 +125,5 @@ let calculation = () => {
     cartIcon.textContent = basket.map((element) => element.item).reduce((x, y) => x + y, 0)
 }
 
-calculation();
+calculation(); //! this will used to calculate no. of item
 
