@@ -81,26 +81,26 @@ let increment = (idt) => {
         search.item += 1
     }
 
-    //! making the value of quantity stick even if page refresh using local storage
-    localStorage.setItem("data", JSON.stringify(basket));
-
     // console.log(basket);
     update(idt);
+    //! making the value of quantity stick even if page refresh using local storage
+    localStorage.setItem("data", JSON.stringify(basket));
 }
 
 let decrement = (idt) => {
     // console.log(idt);
     let search = basket.find((x) => x.id === idt);
-    if (search.item === 0) return; //! for stopping the function
+    if(search === undefined) return;
+    else if (search.item === 0) return; //! for stopping the function
     else {
         search.item -= 1
     }
 
     //! making the value of quantity stick even if page refresh using local storage
-    localStorage.setItem("data", JSON.stringify(basket));
-
-    // console.log(basket);
+    
     update(idt);
+    basket = basket.filter((x) => x.item !== 0 );
+    localStorage.setItem("data", JSON.stringify(basket));
 }
 
 let update = (idt) => {
