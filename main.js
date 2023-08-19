@@ -115,18 +115,9 @@ let update = (idt) => {
 let calculation = () => {
 
     let cartIcon = document.getElementById('cartAmount');
-
-    // ! method one by me
-    // let sum = 0;
-    // basket.map((element) => {
-    //     sum = sum + element.item;
-    // });
-
-    // cartIcon.innerHTML = sum;
-
     // ! method two by instructor
     cartIcon.textContent = basket.map((element) => element.item).reduce((x, y) => x + y, 0)
-
-
 }
+
+calculation();
 
