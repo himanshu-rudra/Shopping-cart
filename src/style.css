@@ -36,7 +36,6 @@ body{
 .title{
     position:relative;
     font-size: 25px;
-    user-select: none;
     cursor: pointer;
 }
 
@@ -141,6 +140,42 @@ body{
 i {
     cursor: pointer;
 }
+
+
+a{
+    text-decoration: none;
+    color: #fff;
+}
+
+
+/**  
+* ! style for label and buttons in cart.html
+**/
+
+
+.text-center {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+.HomeBtn{
+
+    background-color: #0f0e66;
+    color: #fff;
+    padding: 6px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.bi-x-lg {
+    color: red;
+    font-weight: bold;
+}
+
+
 
 
 

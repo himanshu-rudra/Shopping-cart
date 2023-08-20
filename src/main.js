@@ -3,36 +3,8 @@ let shop = document.getElementById('shop');
 
 // ! making the input values inside the cards dynamic  instead hard-coded
 // ! hardcoded means we are putting values for each of the values
+// ! refer to datat.js
 
-let shopItemsData = [{
-    id: "1",
-    name: "casual shirt",
-    price: 45,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-    img: "images/img-1.jpg"
-},
-{
-    id: "2",
-    name: "office shirt",
-    price: 100,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-    img: "images/img-2.jpg"
-},
-{
-    id: "3",
-    name: "Tshirt",
-    price: 25,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-    img: "images/img-3.jpg"
-},
-{
-    id: "4",
-    name: "Mens suit",
-    price: 400,
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing.",
-    img: "images/img-4.jpg"
-}
-];
 
 
 //! this is used to store information which has been included in cart.
@@ -57,7 +29,6 @@ let generateShop = () => {
                 <div class="buttons">
                     <i onclick="decrement(${id})" class="bi bi-dash-lg"></i>
                     <div id=${id} class="quantity">
-                    //! conditional operator
                     ${search.item === undefined ? 0 : search.item}
                     </div>
                     <i onclick="increment(${id})" class="bi bi-plus-lg"></i>
