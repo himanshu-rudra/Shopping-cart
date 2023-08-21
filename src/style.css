@@ -159,7 +159,7 @@ a{
 }
 
 
-.HomeBtn{
+.HomeBtn,.checkout,.removeAll{
 
     background-color: #0f0e66;
     color: #fff;
@@ -215,6 +215,14 @@ a{
     color: #fff;
     border-radius: 4px;
     padding: 3px 6px;
+}
+
+.checkout {
+    background-color: greenyellow;
+}
+
+.removeAll {
+    background-color: red;
 }
 
 
